@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Simple Dictionary</title>
+  <title>Dictionary with LaTeX Support</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -34,10 +38,10 @@
 </head>
 <body>
 
-  <h1>Simple Dictionary</h1>
+  <h1>Math Dictionary</h1>
 
   <input id="wordInput" type="text" placeholder="Word" />
-  <textarea id="definitionInput" rows="3" placeholder="Definition"></textarea>
+  <textarea id="definitionInput" rows="3" placeholder="Definition (LaTeX supported)"></textarea>
   <button onclick="addEntry()">Add Word</button>
 
   <input id="search" type="text" placeholder="Search words..." onkeyup="filterEntries()" />
@@ -70,6 +74,7 @@
         div.innerHTML = `<div class="word">${entry.word}</div><div class="definition">${entry.definition}</div>`;
         container.appendChild(div);
       });
+      MathJax.typeset();  // Re-render MathJax
     }
 
     function filterEntries() {
@@ -84,3 +89,4 @@
 
 </body>
 </html>
+
